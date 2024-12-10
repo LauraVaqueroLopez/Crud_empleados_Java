@@ -68,4 +68,25 @@ public class DAOEmpleado {
         return false;
     }
 
+    public boolean updateEmpleado(int id, DTOEmpleado empleado) {
+        String sql = "UPDATE empleados SET nombre = ?, edad = ?, dpto_id = ? WHERE id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, empleado.getNombre());
+            stmt.setInt(2, empleado.getEdad());
+            stmt.setInt(3, empleado.getDpto_id());
+            stmt.setInt(4, id);
+            int rowsUpdated = stmt.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Empleado con ID " + id + " actualizado con éxito.");
+                return true;
+            } else {
+                System.out.println("No se encontró un empleado con ID " + id + ".");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar empleado: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

@@ -18,6 +18,9 @@ public class Main {
             System.out.println("Empleado no encontrado.");
         }
 
+        int idActualizar = 1;
+        DTOEmpleado empleadoActualizado = new DTOEmpleado("Laura Modificada", 35, 3);
+        daoEmpleado.updateEmpleado(idActualizar, empleadoActualizado);
 
         daoEmpleado.deleteById(28);
 //        daoEmpleado.deleteById(26);
